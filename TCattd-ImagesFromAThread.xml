@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<widget widget_id="ImagesFromAThread" widget_title="Images from a Thread" widget_desc="Display images from a single thread" widget_string="1.0.0" widget_version="1" widget_url="http://www.attitude.cl" widget_install_class="" widget_install_method="" widget_uninstall_class="" widget_uninstall_method="" ctime="">
+  <listeners/>
+  <options>
+    <option option_id="imagesfromathread_title" edit_format="textbox" data_type="string" display_order="1">
+      <default_value></default_value>
+      <edit_format_params></edit_format_params>
+      <sub_options></sub_options>
+      <title>Widget Title</title>
+      <explain><![CDATA[Public title for this Widget.]]></explain>
+    </option>
+    <option option_id="imagesfromathread_tid" edit_format="spinbox" data_type="unsigned_integer" display_order="2">
+      <default_value>666</default_value>
+      <edit_format_params>min=1</edit_format_params>
+      <sub_options></sub_options>
+      <title>Thread ID</title>
+      <explain><![CDATA[The thread id from where to pull images to the widget.]]></explain>
+    </option>
+    <option option_id="imagesfromathread_scanlimit" edit_format="spinbox" data_type="integer" display_order="3">
+      <default_value>15</default_value>
+      <edit_format_params></edit_format_params>
+      <sub_options></sub_options>
+      <title>Query scan limit</title>
+      <explain><![CDATA[By default, this widget will scan the last 15 posts from the desired thread searching for images. You can raise this value, but keep in mind this can have an impact on performance for your site.]]></explain>
+    </option>
+    <option option_id="imagesfromathread_imageslimit" edit_format="spinbox" data_type="integer" display_order="4">
+      <default_value>10</default_value>
+      <edit_format_params></edit_format_params>
+      <sub_options></sub_options>
+      <title>Maximum images to display</title>
+      <explain><![CDATA[How many images to show in home. Useful when more than one image is posted in a single message, so you won't end with dozens of pictures cycling in the widget and slowing things down for the user.]]></explain>
+    </option>
+    <option option_id="imagesfromathread_cycletimer" edit_format="spinbox" data_type="integer" display_order="5">
+      <default_value>7</default_value>
+      <edit_format_params></edit_format_params>
+      <sub_options></sub_options>
+      <title>Image cycle timeout</title>
+      <explain><![CDATA[In seconds. Time between each image change in the cycle.]]></explain>
+    </option>
+    <option option_id="imagesfromathread_wrap" edit_format="onoff" data_type="boolean" display_order="6">
+      <default_value>1</default_value>
+      <edit_format_params></edit_format_params>
+      <sub_options></sub_options>
+      <title>Wrap Widget in Block</title>
+      <explain><![CDATA[If selected, the widget will be wrapped in a standard block.]]></explain>
+    </option>
+    <option option_id="imagesfromathread_link" edit_format="onoff" data_type="boolean" display_order="7">
+      <default_value></default_value>
+      <edit_format_params></edit_format_params>
+      <sub_options></sub_options>
+      <title>Header Links to Thread</title>
+      <explain><![CDATA[You can add a link to the header of the standard block.]]></explain>
+    </option>
+    <option option_id="imagesfromathread_cycleeffect" edit_format="select" data_type="string" display_order="8">
+      <default_value>fade=fade</default_value>
+      <edit_format_params>none=none
+blindX=blindX
+blindY=blindY
+blindZ=blindZ
+cover=cover
+curtainX=curtainX
+curtainY=curtainY
+fade=fade
+fadeZoom=fadeZoom
+growX=growX
+growY=growY
+scrollUp=scrollUp
+scrollDown=scrollDown
+scrollLeft=scrollLeft
+scrollRight=scrollRight
+scrollHorz=scrollHorz
+scrollVert=scrollVert
+shuffle=shuffle
+slideX=slideX
+slideY=slideY
+toss=toss
+turnUp=turnUp
+turnDown=turnDown
+turnLeft=turnLeft
+turnRight=turnRight
+uncover=uncover
+wipe=wipe
+zoom=zoom</edit_format_params>
+      <sub_options></sub_options>
+      <title>Cycle effect</title>
+      <explain><![CDATA[For demos please visit <a href="http://jquery.malsup.com/cycle/browser.html" target="_blank">jQuery Cycle plugin</a>. Keep in mind no every effect is suited for this widget. Think like a user, please. In this case, less is better.]]></explain>
+    </option>
+    <option option_id="imagesfromathread_imagewidth" edit_format="spinbox" data_type="integer" display_order="10">
+      <default_value>230</default_value>
+      <edit_format_params></edit_format_params>
+      <sub_options></sub_options>
+      <title>Images width</title>
+      <explain><![CDATA[Width for the image inside the block]]></explain>
+    </option>
+    <option option_id="imagesfromathread_imageheight" edit_format="spinbox" data_type="integer" display_order="11">
+      <default_value>230</default_value>
+      <edit_format_params></edit_format_params>
+      <sub_options></sub_options>
+      <title>Images height</title>
+      <explain><![CDATA[Height for the images inside the block]]></explain>
+    </option>
+    <option option_id="imagesfromathread_excludeddomains" edit_format="textbox" data_type="string" display_order="20">
+      <default_value>tinypic.com</default_value>
+      <edit_format_params>rows=3</edit_format_params>
+      <sub_options></sub_options>
+      <title>Excluded domains</title>
+      <explain><![CDATA[If you have a problematic domain where your users host images, you can exclude those images here. Just put the domain name in the list, separated by a new line.]]></explain>
+    </option>
+    <option option_id="imagesfromathread_excludegif" edit_format="onoff" data_type="string" display_order="30">
+      <default_value>1</default_value>
+      <edit_format_params></edit_format_params>
+      <sub_options></sub_options>
+      <title>Exclude gif</title>
+      <explain><![CDATA[Gif images are really heavy. It's not a good idea to include them in your home.]]></explain>
+    </option>
+  </options>
+  <phrases/>
+  <templates>
+    <template title="EWRwidget_ImagesFromAThread"><![CDATA[<xen:comment>Created by Esteban @ www.attitude.cl
+
+Sorry for the messy CSS</xen:comment>
+<!-- Widget for XenPorta 2 created by Esteban @ www.attitude.cl -->
+
+<xen:comment>Thanks Kier! https://xenforo.com/community/threads/how-do-i-get-a-thread-url-in-a-template-if-i-only-have-the-thread-id.14177/</xen:comment>
+<xen:set var="$thread.thread_id">{$wOptions.imagesfromathread_tid}</xen:set>
+
+<xen:if is="{$wOptions.imagesfromathread_wrap}">
+	<div class="section widget_{$wWidget}" id="widget_{$wWidlink}">
+		<div class="secondaryContent">
+			<h3><xen:if is="{$wOptions.imagesfromathread_link}"><a href="{xen:link 'threads{xen:if '{$thread.isNew} AND {$thread.haveReadData}', '/unread'}', $thread}">{$wTitle}</a><xen:else />{$wTitle}</xen:if></h3>
+</xen:if>
+
+				<a href="{xen:link 'threads{xen:if '{$thread.isNew} AND {$thread.haveReadData}', '/unread'}', $thread}"
+						title="{$wOptions.imagesfromathread_title}"
+						class="tcattd_sti_cycle"
+						rel="nofollow"
+						style="display: block;">
+					<div class="tcattd_imagesfromathread_sti_cycle_link" style="display: none; width: {$wOptions.imagesfromathread_imagewidth}px; height: {$wOptions.imagesfromathread_imageheight}px; overflow: hidden;">
+						<xen:foreach loop="$wCached" value="$image">
+							<img src="{$image}" alt="{$wOptions.imagesfromathread_title}" class="imagesfromathread_image_cicle" style="width: {$wOptions.imagesfromathread_imagewidth}px !important; max-height: {$wOptions.imagesfromathread_imageheight}px;" />
+						</xen:foreach>
+					</div>
+				</a>
+				<div style="clear: both;"></div>
+				<script src="//cdnjs.cloudflare.com/ajax/libs/jquery.cycle/3.03/jquery.cycle.all.min.js"></script>
+				<script>
+					jQuery( document ).ready(function() {
+						jQuery('.tcattd_imagesfromathread_sti_cycle_link').cycle({
+										fx: '{$wOptions.imagesfromathread_cycleeffect}',
+										timeout: {$wOptions.imagesfromathread_cycletimer}
+						}).fadeIn();
+					});
+				</script>
+
+<xen:if is="{$wOptions.imagesfromathread_wrap}">
+		</div>
+	</div>
+</xen:if>]]></template>
+  </templates>
+</widget>
