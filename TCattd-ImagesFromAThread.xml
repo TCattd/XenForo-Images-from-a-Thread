@@ -127,10 +127,14 @@ Sorry for the messy CSS</xen:comment>
 <xen:if is="{$wOptions.imagesfromathread_wrap}">
 	<div class="section widget_{$wWidget}" id="widget_{$wWidlink}">
 		<div class="secondaryContent">
-			<h3><xen:if is="{$wOptions.imagesfromathread_link}"><a href="{xen:link 'threads{xen:if '{$thread.isNew} AND {$thread.haveReadData}', '/unread'}', $thread}">{$wTitle}</a><xen:else />{$wTitle}</xen:if></h3>
+			<h3><xen:if is="{$wOptions.imagesfromathread_link}"><a href="{xen:link 'threads{xen:if '{$thread.isNew} AND {$thread.haveReadData}', '/unread'}', $thread}" rel="nofollow">{$wTitle}</a><xen:else />{$wTitle}</xen:if></h3>
 </xen:if>
 
-				<a href="{xen:link 'threads{xen:if '{$thread.isNew} AND {$thread.haveReadData}', '/unread'}', $thread}"
+<xen:comment>
+  TODO: Check why this doesn't work for the link...
+  {xen:link 'threads{xen:if '{$thread.isNew} AND {$thread.haveReadData}', '/unread'}', $thread}
+</xen:comment>
+				<a href="{xen:link 'threads/unread', $thread}"
 						title="{$wOptions.imagesfromathread_title}"
 						class="tcattd_sti_cycle"
 						rel="nofollow"
