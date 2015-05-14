@@ -147,7 +147,7 @@ Sorry for the messy CSS</xen:comment>
 					jQuery( document ).ready(function() {
 						jQuery('.tcattd_imagesfromathread_sti_cycle_link').cycle({
 										fx: '{$wOptions.imagesfromathread_cycleeffect}',
-										timeout: {$wOptions.imagesfromathread_cycletimer}
+										timeout: {$wOptions.imagesfromathread_cycletimer}000
 						}).fadeIn();
 					});
 				</script>
